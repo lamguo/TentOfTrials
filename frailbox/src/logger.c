@@ -36,6 +36,8 @@
  * that involve NFS-mounted log directories.
  */
 
+#define _GNU_SOURCE
+#define _DEFAULT_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -580,14 +582,21 @@ int log_dump_ring_buffer(int fd)
     int count = g_ring_buffer.count;
     int idx = g_ring_buffer.tail;
 
-    dprintf(fd, "=== RING BUFFER DUMP (%d entries) ===\n", count);
+    char ring_buf[65536];
+    int written = 0;
+    written += snprintf(ring_buf + written, sizeof(ring_buf) - written,
+        "=== RING BUFFER DUMP (%d entries) ===\n", count);
 
-    for (int i = 0; i < count; i++) {
-        dprintf(fd, "%s\n", g_ring_buffer.entries[idx]);
+    for (int i = 0; i < count && written < (int)sizeof(ring_buf) - 256; i++) {
+        written += snprintf(ring_buf + written, sizeof(ring_buf) - written,
+            "%s\n", g_ring_buffer.entries[idx]);
         idx = (idx + 1) % RING_BUFFER_SIZE;
     }
 
-    dprintf(fd, "=== END RING BUFFER DUMP ===\n");
+    written += snprintf(ring_buf + written, sizeof(ring_buf) - written,
+        "=== END RING BUFFER DUMP ===\n");
+    ssize_t _written = write(fd, ring_buf, written);
+    (void)_written;  // suppress unused-result warning. the ring buffer dump is best-effort.
 
     pthread_mutex_unlock(&g_ring_buffer.ring_mutex);
     return count;

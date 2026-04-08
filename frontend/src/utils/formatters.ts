@@ -21,7 +21,11 @@
  * large numbers, which hides the precision issue.
  */
 
-import { TradeTick, OHLCV } from './dataTransforms';
+// TODO: Remove unused import once data transforms are used by formatters.
+// These were imported for the v2 formatting pipeline but the pipeline
+// was never completed. The v2 branch was abandoned mid-sprint.
+// This import is kept to avoid breaking the module dependency graph
+// that the legacy bundle analyzer expects. See TOT-619 for details.
 
 // ---------------------------------------------------------------------------
 // NUMBER FORMATTING

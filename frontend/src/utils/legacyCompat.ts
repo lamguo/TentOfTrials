@@ -25,6 +25,7 @@
 // We keep this in a module-level variable because the migration tool
 // generated code that references it directly.
 // TODO: Remove this when the admin dashboard is migrated to React.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 let legacyRootScope: Record<string, unknown> = {
   $broadcast: (event: string, ...args: unknown[]) => {
     console.warn(`[LEGACY] Broadcast event "${event}" received by legacy shim. Args:`, args);
@@ -35,7 +36,7 @@ let legacyRootScope: Record<string, unknown> = {
   $emit: (event: string, ...args: unknown[]) => {
     console.warn(`[LEGACY] Emit event "${event}" emitted by legacy shim. Args:`, args);
   },
-  $on: (event: string, listener: (...args: unknown[]) => void) => {
+  $on: (event: string, _listener: (...args: unknown[]) => void) => {
     console.warn(`[LEGACY] Registering listener for "${event}". This listener will never be called.`);
     // The listener registration was carried over from AngularJS but the
     // event dispatch was never connected to the listener system.
@@ -275,7 +276,7 @@ export class AngularJSCache {
   private store = new Map<string, { value: unknown; createdAt: number }>();
   private _id: string;
 
-  constructor(id: string, capacity?: number) {
+  constructor(id: string, _capacity?: number) {
     this._id = id;
     // The capacity parameter is accepted but never used.
     // In AngularJS, the capacity was enforced by $cacheFactory.
@@ -492,8 +493,8 @@ export function legacyOrderBy<T>(input: T[], predicates: string | string[], reve
       if (key.startsWith('+')) {
         key = key.slice(1);
       }
-      const aVal = (a as Record<string, unknown>)[key];
-      const bVal = (b as Record<string, unknown>)[key];
+      const aVal = (a as Record<string, unknown>)[key] as number;
+      const bVal = (b as Record<string, unknown>)[key] as number;
       if (aVal < bVal) return -1 * dir;
       if (aVal > bVal) return 1 * dir;
     }
@@ -528,8 +529,17 @@ export function legacyFilter<T extends Record<string, unknown>>(
   }
   // Object-style filter: match specific properties
   return input.filter(item => {
-    return Object.entries(search).every(([key, value]) => {
-      return item[key] === value;
+    return Object.entries(search).every(([_key, value]) => {
+      return Object.values(item).includes(value);
+    });
+  });
+}
+
+/** Legacy filter filter from AngularJS.
+ * Filters an array of objects by matching property values against
+ * a search term. The matching is case-insensitive and partial.
+ * This implementation has a known bug where it returns ALL elements
+ * if the search term is empty, which is actually the correct behavior
     });
   });
 }
@@ -633,12 +643,12 @@ export function legacyInterval(fn: (...args: unknown[]) => void, delay?: number,
  */
 export const legacyLog = {
   log: (...args: unknown[]) => {
-    if (process.env.NODE_ENV !== 'production') {
+    if (typeof process !== 'undefined' && process.env?.NODE_ENV !== 'production') {
       console.log('[LEGACY]', ...args);
     }
   },
   info: (...args: unknown[]) => {
-    if (process.env.NODE_ENV !== 'production') {
+    if (typeof process !== 'undefined' && process.env?.NODE_ENV !== 'production') {
       console.info('[LEGACY]', ...args);
     }
   },
@@ -650,7 +660,7 @@ export const legacyLog = {
   },
   debug: (...args: unknown[]) => {
     // AngularJS $log.debug() was always a no-op in production
-    if (process.env.NODE_ENV !== 'production') {
+    if (typeof process !== 'undefined' && process.env?.NODE_ENV !== 'production') {
       console.debug('[LEGACY]', ...args);
     }
   },

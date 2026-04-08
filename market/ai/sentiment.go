@@ -493,7 +493,7 @@ func (sa *SentimentAnalyzer) GetHistory(symbol string) []*SentimentScore {
 // Fear & Greed Index
 // ---------------------------------------------------------------------------
 
-// FearGreedIndex calculates the market fear & greed index (0–100).
+// FearGreedIndex calculates the market fear & greed index (0-100).
 // 0 = Extreme Fear, 100 = Extreme Greed.
 type FearGreedIndex struct {
 	analyzer *SentimentAnalyzer

@@ -122,7 +122,7 @@ pub struct InferenceResult {
     pub provider: String,
     /// Token usage statistics
     pub usage: TokenUsage,
-    /// Confidence score (0.0–1.0) estimated by the model router
+    /// Confidence score (0.0-1.0) estimated by the model router
     pub confidence: f64,
     /// Latency of the inference call in milliseconds
     pub latency_ms: u64,

@@ -32,7 +32,7 @@ const (
 	// DefaultPredictionHorizon is the default number of steps ahead to predict.
 	DefaultPredictionHorizon = 12
 
-	// MinConfidenceThreshold is the minimum confidence score (0.0–1.0) for a prediction
+	// MinConfidenceThreshold is the minimum confidence score (0.0-1.0) for a prediction
 	// to be considered actionable. Below this threshold, predictions are marked as
 	// "low confidence" and should not trigger automated trading decisions.
 	MinConfidenceThreshold = 0.65
@@ -180,7 +180,7 @@ type PredictionEngine interface {
 	// Backtest runs the model against historical data and returns performance metrics.
 	Backtest(symbol types.Symbol, features []*FeatureVector, actualPrices []float64, initialCapital float64) (*BacktestResult, error)
 
-	// Confidence returns the model's current confidence in its predictions (0.0–1.0).
+	// Confidence returns the model's current confidence in its predictions (0.0-1.0).
 	Confidence() float64
 }
 

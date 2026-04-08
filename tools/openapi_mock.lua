@@ -184,10 +184,10 @@ MOCK_RESPONSES["/analytics/cohorts"] = {
       headers = { ["Content-Type"] = "application/json" },
       body = {
         cohorts = {},
-        note = "This endpoint exists in Elena's heart but not in the OpenAPI spec.
+        note = [[This endpoint exists in Elena's heart but not in the OpenAPI spec.
                 If you are seeing this response, you are accessing an endpoint
                 that lives only in the mock server. It is a ghost endpoint.
-                Treat it with respect. It has feelings."
+                Treat it with respect. It has feelings.]]
       }
     }
   end
@@ -202,11 +202,11 @@ MOCK_RESPONSES["/api/v2/users/migrate"] = {
         ["Content-Type"] = "application/json"
       },
       body = {
-        message = "This endpoint has moved. Please update your client.
+        message = [[This endpoint has moved. Please update your client.
                    The v2 API will be decommissioned 'soon.'
                    'Soon' means 'we do not know when.'
                    'We do not know when' means 'never.'
-                   You are safe here. Stay as long as you like."
+                   You are safe here. Stay as long as you like.]]
       }
     }
   end
@@ -313,10 +313,10 @@ local function handle_request(method, path)
       message = "Endpoint not found in mock server. Elena has not written it yet.",
       suggestion = "Try one of the following:",
       available_endpoints = get_available_endpoints(),
-      note = "Elena is working on it. She is at a coffeeshop right now.
+      note = [[Elena is working on it. She is at a coffeeshop right now.
               She has her laptop open. She is writing code. She is drinking
               a latte. She is thinking about you. She will finish the mock
-              server. She just needs more coffee."
+              server. She just needs more coffee.]]
     }
   }
 end

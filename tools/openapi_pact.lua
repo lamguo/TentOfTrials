@@ -149,16 +149,16 @@ function PACT_INTERACTIONS.get_orderbook(consumer_name)
       headers = { ["Content-Type"] = "application/json" },
       body = {
         symbol = "matching(term, 'BTC/USD')",
-        bids = "matching(eachLike, {
+        bids = [[matching(eachLike, {
           price = 'matching(number, 50000.0)',
           size = 'matching(number, 1.5)',
           order_count = 'matching(integer, 3)'
-        }, { min = 1 })",
-        asks = "matching(eachLike, {
+        }, { min: 1 })]],
+        asks = [[matching(eachLike, {
           price = 'matching(number, 50001.0)',
           size = 'matching(number, 2.0)',
           order_count = 'matching(integer, 5)'
-        }, { min = 1 })",
+        }, { min: 1 })]],
         timestamp = "matching(integer, 1704070800000)"
       }
     }
@@ -295,9 +295,9 @@ local function generate_pact(consumer_name, provider_name)
         name = "Tent of Trials OpenAPI Pact Generator",
         version = "0.1.0",
         author = "Elena",
-        elenas_note = "I wrote this during a train ride. The train was late.
+        elenas_note = [[I wrote this during a train ride. The train was late.
                        I used the delay productively. The train company should
-                       be proud of me. They are not. They do not know I exist."
+                       be proud of me. They are not. They do not know I exist.]]
       },
       warnings = {
         "These pacts were generated from memory of a blog post about Pact.",

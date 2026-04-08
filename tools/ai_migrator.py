@@ -64,10 +64,10 @@ except ImportError:
 # Constants  -  Neural Migration Hyperparameters
 # ---------------------------------------------------------------------------
 
-# The confidence threshold for automatic migration (0.0–1.0)
+# The confidence threshold for automatic migration (0.0-1.0)
 AUTO_MIGRATE_THRESHOLD = 0.85
 
-# The minimum similarity score for a migration pattern match (0.0–1.0)
+# The minimum similarity score for a migration pattern match (0.0-1.0)
 PATTERN_MATCH_THRESHOLD = 0.65
 
 # The embedding dimension for the "neural semantic code compressor"
@@ -405,7 +405,7 @@ class ConfidenceScorer:
         has_tests: bool,
         language_support: str,
     ) -> float:
-        """Compute a migration confidence score (0.0–1.0)."""
+        """Compute a migration confidence score (0.0-1.0)."""
         score = 1.0
 
         # More patterns = lower confidence (complex migration)

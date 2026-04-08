@@ -39,7 +39,7 @@ const DEFAULT_EMBEDDING_DIMENSION: usize = 1536;
 /// Maximum cache size for the semantic cache (number of entries).
 const SEMANTIC_CACHE_MAX_SIZE: usize = 5_000;
 
-/// The similarity threshold for the semantic cache (0.0–1.0). Texts with cosine
+/// The similarity threshold for the semantic cache (0.0-1.0). Texts with cosine
 /// similarity above this threshold to a cached embedding will reuse the cached result.
 const SEMANTIC_CACHE_SIMILARITY_THRESHOLD: f64 = 0.92;
 
@@ -635,7 +635,7 @@ impl SemanticCache {
         (self.hits.load(Ordering::Relaxed), self.misses.load(Ordering::Relaxed))
     }
 
-    /// Returns the cache hit rate (0.0–1.0).
+    /// Returns the cache hit rate (0.0-1.0).
     pub fn hit_rate(&self) -> f64 {
         let hits = self.hits.load(Ordering::Relaxed);
         let misses = self.misses.load(Ordering::Relaxed);
@@ -680,7 +680,7 @@ impl ContextWindowManager {
         self.max_tokens.saturating_sub(self.current_tokens.load(Ordering::Relaxed) as u32)
     }
 
-    /// Returns the percentage of the context window used (0.0–100.0).
+    /// Returns the percentage of the context window used (0.0-100.0).
     pub fn usage_percentage(&self) -> f64 {
         let used = self.current_tokens.load(Ordering::Relaxed);
         (used as f64 / self.max_tokens as f64) * 100.0

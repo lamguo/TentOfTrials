@@ -1,13 +1,14 @@
 package com.tentoftrials.compliance;
 
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.security.*;
 import java.time.*;
 import java.time.format.*;
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.function.*;
-import java.util.stream.*;
+import java.util.logging.Logger;
 
 /**
  * FUCKING Compliance Auditor.

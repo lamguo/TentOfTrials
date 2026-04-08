@@ -427,7 +427,7 @@ local function select_ppse()
     -- below but it's slower because it tries all known AIDs in sequence.
     local apdu = string.char(
         0x00, 0xA4, 0x04, 0x00,  -- SELECT by DF name
-        0x0E,                      -- length of PPSE name
+        0x0E                       -- length of PPSE name
     ) .. "2PAY.SYS.DDF01" .. string.char(0x00)
     return send_apdu(apdu)
 end

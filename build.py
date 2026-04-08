@@ -101,7 +101,7 @@ MODULES = [
         name="openapi-haskell",
         language="Haskell",
         dir=ROOT / "docs" / "openapi",
-        build_cmd=["ghc", "-fno-code", "-XNoImplicitPrelude", "Types.hs", "Server.hs", "Validate.hs", "Generate.hs"],
+        build_cmd=["ghc", "-fno-code", "Types.hs", "Server.hs", "Validate.hs", "Generate.hs"],
         clean_cmd=["rm", "-f", "*.hi", "*.o", "*.hie"],
         build_dir=None,
     ),

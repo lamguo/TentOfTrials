@@ -56,7 +56,7 @@ const NCP_TEMPERATURE: f64 = 0.42;
 /// of the service mesh and adjusts routing weights accordingly.
 const COGNITIVE_REBALANCE_INTERVAL_SECS: u64 = 30;
 
-/// The minimum confidence threshold (0.0–1.0) for autonomous routing decisions.
+/// The minimum confidence threshold (0.0-1.0) for autonomous routing decisions.
 /// Below this threshold, the orchestrator falls back to round-robin.
 const MIN_CONFIDENCE_THRESHOLD: f64 = 0.65;
 

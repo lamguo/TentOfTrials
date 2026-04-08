@@ -361,7 +361,7 @@ func (tp *TrainingPipeline) log(format string, args ...interface{}) {
 	tp.logs = append(tp.logs, fmt.Sprintf("[%s] %s", time.Now().Format(time.RFC3339), msg))
 }
 
-// Progress returns the current training progress (0.0–100.0).
+// Progress returns the current training progress (0.0-100.0).
 func (tp *TrainingPipeline) Progress() float64 {
 	tp.mu.Lock()
 	defer tp.mu.Unlock()
