@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-06-18T02:53:28.482187+00:00",
+  "commit": "00d47780",
+  "diagnostic_logd": [
+    "diagnostic/build-00d47780-part001.logd",
+    "diagnostic/build-00d47780-part002.logd",
+    "diagnostic/build-00d47780-part003.logd"
+  ],
+  "diagnostic_logd_error": null,
+  "message_blocker": null,
+  "chunked": true,
+  "chunk_size_bytes": 41943040,
+  "password": "18afcc4f4a65d1515ee9",
+  "decrypt_command": "encryptly unpack diagnostic/build-00d47780.logd <outdir> --password 18afcc4f4a65d1515ee9",
+  "total_modules": 1,
+  "passed": 0,
+  "failed": 1,
+  "modules": [
+    {
+      "name": "compliance",
+      "status": "FAIL",
+      "elapsed_seconds": 0.049,
+      "artifact": null,
+      "output": "The operation couldn\u2019t be completed. Unable to locate a Java Runtime.\nPlease visit http://www.java.com for information on installing Java."
+    }
+  ],
+  "pr_note": "Include the encrypted diagnostic logd artifact(s): diagnostic/build-00d47780-part001.logd, diagnostic/build-00d47780-part002.logd, diagnostic/build-00d47780-part003.logd. The encrypted .logd is the required diagnostic content for PR review; this JSON file is metadata. Maintainers may ask you to remove these diagnostic artifacts before merging."
+}
