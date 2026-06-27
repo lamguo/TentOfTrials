@@ -19,8 +19,6 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
 from health_check import (  # noqa: E402
     check_memory_usage,
     check_load_average,
-    MEMORY_THRESHOLD_WARNING,
-    MEMORY_THRESHOLD_CRITICAL,
 )
 
 

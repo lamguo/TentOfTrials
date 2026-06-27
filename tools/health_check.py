@@ -37,10 +37,9 @@ import platform
 import socket
 import ssl
 import subprocess
-import sys
 import time
 from datetime import datetime
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, Optional, Tuple
 
 # ---------------------------------------------------------------------------
 # CONSTANTS
@@ -342,7 +341,7 @@ def run_health_checks(service: Optional[str] = None, json_output: bool = False) 
 
 def print_health_report(results: Dict[str, Any]):
     print(f"\n{'='*60}")
-    print(f"  HEALTH CHECK REPORT")
+    print("  HEALTH CHECK REPORT")
     print(f"  Host: {results['hostname']}")
     print(f"  Time: {results['timestamp']}")
     print(f"  Overall: {results['overall_status']}")
